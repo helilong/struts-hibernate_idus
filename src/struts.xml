@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+<!-- 配置struts2 -->   
+<struts>
+	<!-- 中文配置 -->
+	<constant name="struts.i18n.encoding" value="UTF-8"></constant>
+	
+	<package name="u" extends="struts-default">
+	
+	
+		<!-- 增加 -->
+		<action name="userAdd" class="com.xiaohe.action.UserAction" method="finAdd">
+			 <result name="finAdd" type="redirect">userAll</result>
+		</action>
+		<!-- 删除 -->
+		<action name="userDelete" class="com.xiaohe.action.UserAction" method="finDelete">
+			 <result name="finDelete" type="redirect">userAll</result>
+		</action>
+		
+		<!-- 修改跳转 -->
+		 <action name="userEdit" class="com.xiaohe.action.UserAction" method="finEdit">
+            <result name="finEdit">/edit.jsp</result>
+        </action>
+		
+		<!-- 修改 -->
+		 <action name="userUpdate" class="com.xiaohe.action.UserAction" method="finUpdate">
+            <result name="finUpdate" type="redirect">userAll</result>
+        </action>
+        
+        
+		<!-- 查询 -->	
+		<action name="userAll" class="com.xiaohe.action.UserAction" method="finAll">
+			 <result name="finAll">/show.jsp</result>
+		</action>
+	</package>
+	
+	
+	
+</struts>
+
+
+
