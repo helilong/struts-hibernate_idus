@@ -10,6 +10,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 //hibernate框架的导入的包
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
 
@@ -84,6 +85,23 @@ public class UserinfoDaoImpl implements UserinfoDao{
         s.close();
         sf.close();
         return userList;
+	}
+
+	@Override
+	public Userinfo login(Userinfo userinfo) {
+		 SessionFactory sf = new Configuration().configure()
+	                .buildSessionFactory();
+	        Session s = sf.openSession();
+	       Transaction tx = s.beginTransaction();
+	        Query q = s.createQuery("from Userinfo where uname=? and upassword=?");
+	        q.setParameter(0, userinfo.getUname());
+	        q.setParameter(0, userinfo.getUpassword());
+	        Userinfo u = (Userinfo) q.uniqueResult();
+	        System.out.println(u+"判断登录的数据库的值");
+	        tx.commit();
+	        s.close();
+	        sf.close();
+		return u;
 	}
 
 	
